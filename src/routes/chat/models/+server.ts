@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import { AI_ENDPOINT } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 export const GET: RequestHandler = async () => {
 	const requestOptions = {
@@ -7,7 +7,7 @@ export const GET: RequestHandler = async () => {
 		headers: { 'Content-Type': 'application/json' }
 	};
 
-	const chatEndpoint = `${AI_ENDPOINT}/v1/models`;
+	const chatEndpoint = `${env.AI_ENDPOINT}/v1/models`;
 
 	console.log('chatEndpoint', chatEndpoint);
 

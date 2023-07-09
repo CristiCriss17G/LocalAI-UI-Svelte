@@ -16,5 +16,5 @@ model ChatInteraction {
   updatedAt   DateTime @updatedAt
   model       String
   userRequest String
-  botResponse String
+  botResponse String   @default("")
 }

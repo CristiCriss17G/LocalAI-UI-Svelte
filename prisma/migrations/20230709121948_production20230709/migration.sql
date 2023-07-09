@@ -5,7 +5,7 @@ CREATE TABLE "ChatInteraction" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "model" TEXT NOT NULL,
     "userRequest" TEXT NOT NULL,
-    "botResponse" TEXT NOT NULL,
+    "botResponse" TEXT NOT NULL DEFAULT '',
 
     CONSTRAINT "ChatInteraction_pkey" PRIMARY KEY ("id")
 );

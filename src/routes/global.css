@@ -1,123 +1,142 @@
+:root {
+	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-mono: 'Fira Mono', monospace;
+	--color-bg-0: rgb(202, 216, 228);
+	--color-bg-1: hsl(209, 36%, 86%);
+	--color-bg-2: hsl(224, 44%, 95%);
+	--color-theme-1: #ff3e00;
+	--color-theme-2: #4075a6;
+	--color-text: rgba(0, 0, 0, 0.7);
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
+	font-family: var(--font-body);
+	color: var(--color-text);
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.app {
+	background-color: #1d1d1d; /* Update background color to dark */
+	color: #fff; /* Update text color to white */
 }
 
 /* CSS for chat container */
 .chat-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #1d1d1d; /* Update background color to dark */
-  color: #fff; /* Update text color to white */
+	/* height: 10vh; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #1d1d1d; /* Update background color to dark */
+	color: #fff; /* Update text color to white */
 }
 
 .model-dropdown select {
-  padding: 10px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #292929;
-  color: #fff;
+	padding: 10px;
+	font-size: 1.1rem;
+	border-radius: 5px;
+	border: none;
+	background-color: #292929;
+	color: #fff;
 }
 
 /* CSS for chat messages */
 .chat-container {
-  height: calc(80vh - 60px);
-  width: 70%;
-  max-width: 2000px;
-  margin: 0 auto;
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-  overflow-y: scroll;
-  background-color: #292929; /* Update background color to dark */
-  border-radius: 10px;
-  padding: 20px;
-  box-sizing: border-box;
+	height: calc(75vh - 60px);
+	width: 70%;
+	max-width: 2000px;
+	margin: 0 auto;
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+	overflow-y: scroll;
+	background-color: #292929; /* Update background color to dark */
+	border-radius: 10px;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
 .chat-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+	display: none; /* Safari and Chrome */
 }
 
 /* CSS for chat message */
 .chat-message {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 10px;
 }
 
 .user-message {
-  align-items: flex-end;
+	align-items: flex-end;
 }
 
 .assistant-message {
-  align-items: flex-start;
+	align-items: flex-start;
 }
 
 .message-role {
-  font-size: 0.9rem;
-  font-weight: bold;
+	font-size: 0.9rem;
+	font-weight: bold;
 }
 
 .message-content {
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  background-color: #fff; /* Update background color to white */
-  color: #1d1d1d; /* Update text color to dark */
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 1.1rem;
+	background-color: #b5b5b5; /* Update background color to white */
+	color: #1d1d1d; /* Update text color to dark */
+	max-width: 100%;
 }
 
 /* CSS for chat input */
 .chat-input {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
+	display: flex;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 .input-field {
-  flex: 1;
-  padding: 10px;
-  font-size: 1.1rem;
-  border-radius: 5px;
-  border: none;
-  background-color: #292929;
-  color: #fff;
+	flex: 1;
+	padding: 10px;
+	font-size: 1.1rem;
+	border-radius: 5px;
+	border: none;
+	background-color: #292929;
+	color: #fff;
 }
 
 .submit-button {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #1db954; /* Update background color to green */
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	background-color: #1db954; /* Update background color to green */
+	color: #fff;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #1ed760; /* Update background color on hover */
+	background-color: #1ed760; /* Update background color on hover */
 }
 
 /* CSS for error message */
 .error-message {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #ff6961; /* Update text color to red */
+	margin-top: 10px;
+	font-size: 0.9rem;
+	color: #ff6961; /* Update text color to red */
 }
 
 .model-dropdown {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
