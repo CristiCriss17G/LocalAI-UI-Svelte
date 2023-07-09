@@ -58,15 +58,18 @@ ENV NODE_ENV production
 USER node
 
 # Copy package.json so that package manager commands can be used.
-COPY package.json .
+COPY --chown=node:node package.json .
 
 # Copy the prisma folder.
-COPY prisma ./prisma
+COPY --chown=node:node prisma ./prisma
 
 # Copy the production dependencies from the deps stage and also
 # the built application from the build stage into the image.
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/build ./build
+COPY --chown=node:node --from=deps /usr/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=build /usr/src/app/build ./build
+
+# Generate prisma client.
+RUN npx prisma generate
 
 # Expose the port that the application listens on.
 EXPOSE 3000
