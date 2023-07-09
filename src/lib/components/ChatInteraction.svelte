@@ -3,7 +3,7 @@
 	import Markdown from '@magidoc/plugin-svelte-marked';
 
 	export let interaction: ChatInteraction;
-	export let className: string = '';
+	export let className = '';
 </script>
 
 <div class="char-interaction {className ? className : ''}">

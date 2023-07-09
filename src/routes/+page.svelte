@@ -10,7 +10,7 @@
 
 	// let isLoading = false;
 	let error = false;
-	let currentAssistantMessage = '';
+	// let currentAssistantMessage = '';
 	let selectedModel = '';
 	let chatContainerRef: HTMLDivElement;
 
@@ -18,7 +18,7 @@
 		api: '/chat'
 	});
 
-	const handleSubmitCustom = async (e: any) => {
+	const handleSubmitCustom = async (e: SubmitEvent) => {
 		e.preventDefault();
 		// isLoading = true;
 		console.log(e);
