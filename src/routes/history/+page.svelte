@@ -18,6 +18,11 @@
 	};
 </script>
 
+<svelte:head>
+	<title>History</title>
+	<meta name="description" content="History of chat interactions" />
+</svelte:head>
+
 <h1>History</h1>
 <div class="chat-container">
 	<main>

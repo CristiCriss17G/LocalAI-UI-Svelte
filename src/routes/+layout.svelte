@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import './global.css';
+	import '../app.css';
 
 	// export let data: LayoutData;
 </script>
