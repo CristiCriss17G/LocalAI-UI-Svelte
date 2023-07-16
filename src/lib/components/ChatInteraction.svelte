@@ -6,7 +6,7 @@
 	export let className = '';
 </script>
 
-<div class="char-interaction {className ? className : ''}">
+<div class="chat-interaction {className ? className : ''}">
 	<p>Created at: <code>{interaction.createdAt}</code></p>
 	<ul>
 		<li>User Input: {interaction.userRequest}</li>
@@ -15,23 +15,23 @@
 </div>
 
 <style>
-	.char-interaction {
+	.chat-interaction {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		margin-bottom: 1rem;
 	}
 
-	.char-interaction p {
+	.chat-interaction p {
 		margin: 0;
 	}
 
-	.char-interaction ul li {
+	.chat-interaction ul li {
 		margin: 0;
 		padding: 0;
 	}
 
-	.char-interaction ul li:first-child {
+	.chat-interaction ul li:first-child {
 		margin-bottom: 0.5rem;
 	}
 </style>
