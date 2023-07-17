@@ -25,8 +25,8 @@ model AiProvider {
 
 model ChatInteraction {
   id          Int        @id @default(autoincrement())
-  model       AiProvider @relation(fields: [modelId], references: [id])
-  modelId     Int
+  provider    AiProvider @relation(fields: [providerId], references: [id])
+  providerId  Int
   userRequest String
   botResponse String?
   createdAt   DateTime   @default(now())

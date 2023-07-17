@@ -10,7 +10,7 @@
 	<p>Created at: <code>{interaction.createdAt}</code></p>
 	<ul>
 		<li>User Input: {interaction.userRequest}</li>
-		<li>Local AI Response: <Markdown source={interaction.botResponse} /></li>
+		<li>Local AI Response: <Markdown source={interaction.botResponse || ""} /></li>
 	</ul>
 </div>
 

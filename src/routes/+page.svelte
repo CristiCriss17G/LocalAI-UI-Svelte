@@ -2,11 +2,7 @@
 	import { useChat } from 'ai/svelte';
 	import { onMount } from 'svelte';
 	import Markdown from '@magidoc/plugin-svelte-marked';
-
-	interface Model {
-		id: string;
-		object: string;
-	}
+	import type { PartialAiProviderFE } from '$lib/types/partialAiProviderFE';
 
 	// let isLoading = false;
 	let error = false;
@@ -27,10 +23,15 @@
 		handleSubmit(e);
 	};
 
-	let models: Model[] = [];
+	let models: PartialAiProviderFE[] = [];
 
 	async function getModels() {
-		const response = await fetch('/chat/models');
+		const response = await fetch('/chat/providers', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
 		const data = await response.json();
 		models = data.data;
 	}
@@ -51,7 +52,7 @@
 	<select value={selectedModel}>
 		{#each models as model}
 			<option value={model.id}>
-				{model.id}
+				{model.name}
 			</option>
 		{/each}
 	</select>

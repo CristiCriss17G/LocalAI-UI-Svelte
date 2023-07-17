@@ -9,7 +9,7 @@
 		activeTab = tab;
 	}
 
-	let modelName = '';
+	let providerName = '';
 	let endpoint = '';
 	let openAiModel = false;
 	let payload = '';
@@ -21,15 +21,15 @@
 		e.preventDefault();
 
 		console.table({
-			modelName,
+			providerName,
 			endpoint,
 			openAiModel,
 			payload
 		});
 	};
 
-	function validateModelName() {
-		if (modelName.length === 0 || modelName.length > 50) {
+	function validateProviderName() {
+		if (providerName.length === 0 || providerName.length > 50) {
 			isValid = false;
 		} else {
 			isValid = true;
@@ -83,12 +83,12 @@
 			<form on:submit={handleSubmit}>
 				<div class="flex gap-2 mb-4">
 					<div class="{(isValid && 'valid') || 'invalid'} w-1/2">
-						<label for="model-name" class="text-center block">Model Name:</label>
+						<label for="provider-name" class="text-center block">Provider Name:</label>
 						<input
 							type="text"
-							id="model-name"
-							bind:value={modelName}
-							on:input={validateModelName}
+							id="provider-name"
+							bind:value={providerName}
+							on:input={validateProviderName}
 							class="block w-full"
 						/>
 						<!-- Display validation error message for Model Name field -->
