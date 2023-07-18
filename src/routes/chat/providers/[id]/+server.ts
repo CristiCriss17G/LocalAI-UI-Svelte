@@ -9,6 +9,7 @@ export const PUT: RequestHandler = async ({ request }) => {
 		name: providerName,
 		endpoint,
 		openAiModel,
+		model,
 		payload
 	}: PartialAiProvider = await request.json();
 
@@ -16,6 +17,7 @@ export const PUT: RequestHandler = async ({ request }) => {
 		name: providerName,
 		endpoint,
 		openAiModel,
+		model,
 		payload
 	});
 

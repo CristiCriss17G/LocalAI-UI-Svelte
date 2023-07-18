@@ -1,9 +1,9 @@
 import prisma from '$lib/server/prisma';
 
-export const saveUserInput = async (model: string, input: string) => {
+export const saveUserInput = async (providerId: number, input: string) => {
 	const response = await prisma.chatInteraction.create({
 		data: {
-			model: model,
+			providerId,
 			userRequest: input
 		}
 	});

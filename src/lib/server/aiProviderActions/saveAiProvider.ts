@@ -2,6 +2,16 @@ import prisma from '$lib/server/prisma';
 import type { PartialAiProvider } from '$lib/types/partialAiProvider';
 
 export const saveAiProvider = async (provider: PartialAiProvider) => {
+	const existingProvider = await prisma.aiProvider.findUnique({
+		where: {
+			name: provider.name
+		}
+	});
+
+	if (existingProvider) {
+		provider.name = `${provider.name} (${Date.now()})`;
+	}
+
 	const response = await prisma.aiProvider.create({
 		data: provider
 	});

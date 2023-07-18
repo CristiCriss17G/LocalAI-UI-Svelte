@@ -2,16 +2,22 @@
 	// import type { PageData } from './$types';
 
 	// export let data: PageData;
+	import AiProvider from '$lib/components/AiProvider.svelte';
+	import type { AiProvider as AiProviderType } from '@prisma/client';
+	import { onMount } from 'svelte';
 
 	let activeTab = 1;
 
 	function setActiveTab(tab: number) {
+		if (tab === activeTab) return;
+		if (tab === 1) getProviders();
 		activeTab = tab;
 	}
 
 	let providerName = '';
 	let endpoint = '';
 	let openAiModel = false;
+	let model = '';
 	let payload = '';
 	let isValid = true;
 
@@ -24,8 +30,37 @@
 			providerName,
 			endpoint,
 			openAiModel,
+			model,
 			payload
 		});
+
+		const requestBody = {
+			name: providerName,
+			endpoint,
+			openAiModel,
+			model,
+			payload
+		};
+
+		const response = await fetch('/chat/providers', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody)
+		});
+
+		const data = await response.json();
+
+		console.log(data);
+
+		if (data.status === 'success') {
+			providerName = '';
+			endpoint = '';
+			openAiModel = false;
+			model = '';
+			payload = '';
+		}
 	};
 
 	function validateProviderName() {
@@ -44,6 +79,14 @@
 		}
 	}
 
+	function validateModel() {
+		if (model.length > 50) {
+			isValid = false;
+		} else {
+			isValid = true;
+		}
+	}
+
 	function validatePayload() {
 		if (payload.length === 0 || payload.length > 1000) {
 			isValid = false;
@@ -51,6 +94,23 @@
 			isValid = true;
 		}
 	}
+
+	let providers: AiProviderType[] = [];
+
+	async function getProviders() {
+		const response = await fetch('/chat/providers?fullProviders=true', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+		const data = await response.json();
+		providers = data;
+	}
+
+	onMount(() => {
+		getProviders();
+	});
 </script>
 
 <svelte:head>
@@ -73,7 +133,9 @@
 		<!-- Content for Tab 1 -->
 		<div class="tab-content active">
 			<!-- Add your content for Tab 1 here -->
-			<p>Hello</p>
+			{#each providers as provider}
+				<AiProvider {provider} className="message-content" />
+			{/each}
 		</div>
 	{/if}
 
@@ -118,6 +180,17 @@
 				</div>
 
 				<div class="{(isValid && 'valid') || 'invalid'} my-4">
+					<label for="model" class="text-center block">Model:</label>
+					<input
+						type="text"
+						id="model"
+						bind:value={model}
+						on:input={validateModel}
+						class="block w-1/2 mx-auto"
+					/>
+				</div>
+
+				<div class="{(isValid && 'valid') || 'invalid'} my-4">
 					<label for="payload" class="text-center block">Payload:</label>
 					<textarea
 						id="payload"
@@ -127,7 +200,9 @@
 					/>
 				</div>
 
-				<button type="submit" class="mt-5" disabled={!isValid}>Submit</button>
+				<button type="submit" class="block mt-10 mx-auto submit-button" disabled={!isValid}
+					>Submit</button
+				>
 			</form>
 		</div>
 	{/if}

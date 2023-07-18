@@ -7,10 +7,11 @@
 	// let isLoading = false;
 	let error = false;
 	// let currentAssistantMessage = '';
-	let selectedModel = '';
+	let selectedProvider = 0;
+	let temperature = 0.5;
 	let chatContainerRef: HTMLDivElement;
 
-	const { messages, handleSubmit, input, isLoading } = useChat({
+	const { messages, handleSubmit, input, isLoading, stop } = useChat({
 		api: '/chat'
 	});
 
@@ -20,12 +21,12 @@
 		console.log(e);
 		// Clear the old content
 		chatContainerRef.children[0].innerHTML = '';
-		handleSubmit(e);
+		handleSubmit(e, { options: { body: { temperature, selectedProvider } } });
 	};
 
-	let models: PartialAiProviderFE[] = [];
+	let providers: PartialAiProviderFE[] = [];
 
-	async function getModels() {
+	async function getProviders() {
 		const response = await fetch('/chat/providers', {
 			method: 'GET',
 			headers: {
@@ -33,11 +34,11 @@
 			}
 		});
 		const data = await response.json();
-		models = data.data;
+		providers = data.data;
 	}
 
 	onMount(() => {
-		getModels();
+		getProviders();
 	});
 </script>
 
@@ -49,10 +50,10 @@
 <!-- <main class="chat-page"> -->
 <!-- Render dropdown list for models -->
 <div class="model-dropdown">
-	<select value={selectedModel}>
-		{#each models as model}
-			<option value={model.id}>
-				{model.name}
+	<select value={selectedProvider}>
+		{#each providers as provider}
+			<option value={provider.id}>
+				{provider.name}
 			</option>
 		{/each}
 	</select>

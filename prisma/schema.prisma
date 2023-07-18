@@ -15,6 +15,7 @@ model AiProvider {
   name             String            @unique @db.VarChar(50)
   endpoint         String            @db.VarChar(100)
   openAiModel      Boolean           @default(false)
+  model            String?           @db.VarChar(50)
   payload          String
   chatInteractions ChatInteraction[]
   createdAt        DateTime          @default(now())
