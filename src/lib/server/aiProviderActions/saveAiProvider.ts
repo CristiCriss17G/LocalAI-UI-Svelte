@@ -29,3 +29,14 @@ export const updateAiProvider = async (id: number, provider: PartialAiProvider) 
 
 	return response;
 };
+
+export const deleteAiProvider = async (id: number) => {
+	console.log('deleteAiProvider', id);
+	const response = await prisma.aiProvider.delete({
+		where: {
+			id: id
+		}
+	});
+
+	return response;
+};

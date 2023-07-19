@@ -17,7 +17,7 @@ export const makeOpenAiRequest = async (
 
 	const response = await api.createChatCompletion({
 		model: provider.model!,
-		stream: true,
+		stream: provider.stream,
 		messages,
 		temperature
 	});

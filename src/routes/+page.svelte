@@ -34,7 +34,7 @@
 			}
 		});
 		const data = await response.json();
-		providers = data.data;
+		providers = data;
 	}
 
 	onMount(() => {
@@ -77,10 +77,24 @@
 		{/each}
 	</div>
 </div>
-<form class="chat-input" on:submit={handleSubmitCustom}>
+<form class="flex gap-8 justify-around items-center mt-5" on:submit={handleSubmitCustom}>
+	<div class="flex items-center space-x-4">
+		<input type="range" min="0" max="1" step="0.01" class="w-full" bind:value={temperature} />
+
+		<input
+			type="number"
+			min="0"
+			max="1"
+			step="0.01"
+			class="input-field text-black w-16 border rounded-md px-2 py-1 text-center"
+			bind:value={temperature}
+		/>
+	</div>
 	<!-- Render input field and submit button  -->
-	<input bind:value={$input} class="input-field" placeholder="Say Something..." />
-	<button type="submit" class="submit-button" disabled={!input || $isLoading}>Send</button>
+	<div class="chat-input mt-0">
+		<input bind:value={$input} class="input-field" placeholder="Say Something..." />
+		<button type="submit" class="submit-button" disabled={!input || $isLoading}>Send</button>
+	</div>
 </form>
 <!-- Render error message if there's an error -->
 {#if error}

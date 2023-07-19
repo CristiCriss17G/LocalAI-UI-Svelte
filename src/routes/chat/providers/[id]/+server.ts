@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types';
 import type { PartialAiProvider } from '$lib/types/partialAiProvider';
-import { updateAiProvider } from '$lib/server/aiProviderActions/saveAiProvider';
+import { updateAiProvider, deleteAiProvider } from '$lib/server/aiProviderActions/saveAiProvider';
 
 export const PUT: RequestHandler = async ({ request }) => {
 	const providerId = Number(request.url.split('/').pop());
@@ -10,6 +10,7 @@ export const PUT: RequestHandler = async ({ request }) => {
 		endpoint,
 		openAiModel,
 		model,
+		stream,
 		payload
 	}: PartialAiProvider = await request.json();
 
@@ -18,8 +19,17 @@ export const PUT: RequestHandler = async ({ request }) => {
 		endpoint,
 		openAiModel,
 		model,
+		stream,
 		payload
 	});
+
+	return new Response(JSON.stringify(provider));
+};
+
+export const DELETE: RequestHandler = async ({ request }) => {
+	const providerId = Number(request.url.split('/').pop());
+
+	const provider = await deleteAiProvider(providerId);
 
 	return new Response(JSON.stringify(provider));
 };

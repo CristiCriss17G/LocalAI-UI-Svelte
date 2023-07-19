@@ -21,6 +21,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		endpoint,
 		openAiModel,
 		model,
+		stream,
 		payload
 	}: PartialAiProvider = await request.json();
 
@@ -29,6 +30,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		endpoint,
 		openAiModel,
 		model,
+		stream,
 		payload
 	});
 
